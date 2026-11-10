@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Flower2, Heart } from 'lucide-react'
+
+export default function Sorpresa() {
+  const [answer, setAnswer] = useState(null)
+  return <section id="final" className="relative mx-auto max-w-6xl overflow-hidden px-5 pb-20 pt-10 text-center"><div className="absolute left-1/2 top-24 -z-0 h-72 w-72 -translate-x-1/2 rounded-full bg-rose-200/50 blur-3xl" /><p className="eyebrow">Y ahora, una última cosa</p><h2 className="section-title mx-auto mt-2 max-w-2xl">¿Quieres seguir creando<br /><em>recuerdos conmigo?</em></h2><motion.div animate={{ y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="mx-auto my-8 text-rose-500"><Flower2 size={75} strokeWidth={1} /></motion.div><AnimatePresence mode="wait">{answer ? <motion.div key="yes" initial={{ opacity: 0, scale: .8 }} animate={{ opacity: 1, scale: 1 }} className="mx-auto max-w-md rounded-3xl border border-rose-200 bg-white/75 p-7 shadow-lg"><Heart className="mx-auto mb-3 text-rose-500" fill="currentColor" /><p className="font-display text-3xl italic text-rose-700">{answer === 'yes' ? 'Sabía que dirías que sí 💗' : 'Entonces tendré que convencerte...'}</p><p className="mt-2 text-sm text-rose-900/60">Este mundo siempre tendrá un lugar reservado para ti.</p></motion.div> : <motion.div key="buttons" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center gap-3"><button onClick={() => setAnswer('yes')} className="button-primary">Sí, por supuesto <Heart size={17} fill="currentColor" /></button><button onClick={() => setAnswer('maybe')} className="button-secondary">Déjame pensarlo</button></motion.div>}</AnimatePresence></section>
+}
